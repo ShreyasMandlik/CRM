@@ -1,0 +1,145 @@
+{% extends 'administrator\Administrator_base.html' %}
+
+
+{% block title %} <title> Home Page</title>{% endblock %}
+
+
+{% block content %}
+
+<div class="container my-2">
+  <div class="row">
+    <div class="col-xl-4 col-md-6">
+        <div class="card bg-success text-white mb-3">
+        <div class="card-body"> Total customers </div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <p class="small text-white stretched-link">{{total_customer}}</p>
+            <div class="small text-white"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
+          </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+      <div class="card bg-primary text-white mb-3">
+      <div class="card-body"> Total service added </div>
+      <div class="card-footer d-flex align-items-center justify-content-between">
+          <p class="small text-white stretched-link">{{d}}</p>
+          <div class="small text-white"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
+        </div>
+      </div>
+  </div>
+    <div class="col-xl-4 col-md-6 ">
+      <div class="card bg-warning text-white mb-3">
+        <div class="card-body">Total client</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <p class="small text-white stretched-link">{{total_client}}</p>
+            <div class="small text-white"><svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg><!-- <i class="fas fa-angle-right"></i> Font Awesome fontawesome.com --></div>
+          </div>
+        </div>
+  </div>
+</div>
+</div>
+
+
+<h5 style="text-align: center; font-weight: 700;">Service Details</h5>
+    <div class="container my-2" style="border: black solid 2px; border-radius: 3px;">
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Unique Id</th>
+              <th scope="col">Service Name</th>
+              <th scope="col">Sales count</th>
+              <th scope="col">Charges</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+      
+              
+      
+            </tr>
+          </thead>
+          <tbody>
+              {% for i in Services_s %}
+            <tr>
+              <th scope="row">{{i.id}}</th>
+              <td>{{i.Service_Name}}</td>
+              <td>{{i.Sales_count}}</td>
+              <td>{{i.Charges}}</td>
+              <td> <a  class="btn btn-sm btn-warning" href="{% url 'service_update' i.id %}"> Update </a></td>
+              <td> <a  class="btn btn-sm btn-danger" href="{% url 'service_delete' i.id %}"> Delete </a></td>
+              
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    </div>
+   
+    <h5 style="text-align: center;  font-weight: 700; ">Agent Performence</h5>
+    <div class="container my-2" style="border: black solid 2px; border-radius: 3px;">
+      <div class="table-responsive ">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Unique Id</th>
+              <th scope="col">Agent_user</th>
+              <th scope="col">mobile</th>
+              <th scope="col">Sales count</th>
+              <th scope="col">Total Client</th>
+              
+      
+            </tr>
+          </thead>
+          <tbody>
+              {% for j in Agents_b %}
+            <tr>
+              <th scope="row">{{j.id}}</th>
+              <td>{{j.Agent_user}}</td>
+              <td>{{j.mobile}}</td>
+              <td>{{j.Sales_count}}</td>
+              <td>{{j.Client_count}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <h5 style="text-align: center; font-weight: 700;">Service Requests</h5>
+
+        <div class="container my-2" style="border: black solid 2px; border-radius: 3px;">
+          <div class="table-responsive ">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Unique Id</th>
+                  <th scope="col">Client Name</th>
+                  <th scope="col">Agent Name</th>
+                  <th scope="col">Service requested</th>
+                  <th scope="col">Apporve</th>
+                  <th scope="col">Delete</th>
+                  
+          
+                </tr>
+              </thead>
+              <tbody>
+                  {% for k in Services_taken_request_b %}
+                <tr>
+                  <th scope="row">{{k.id}}</th>
+                  <td>{{k.Name.Name}}</td>
+                  <th>{{k.Name.Agent_Name.Agent_user}}</th>
+                  <td>{{k.Service}}</td>
+                  <td> <a  class="btn btn-sm btn-warning" href="{% url 'approve_trial' k.id %}">Apporve</a></td>
+                  <td> <a  class="btn btn-sm btn-danger" href="{% url 'Delete_trial' k.id %}"> Delete </a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        
+      </div>
+    </div>
+
+
+
+
+  {% endblock content %}
+
+
+
